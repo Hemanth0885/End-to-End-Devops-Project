@@ -1,6 +1,5 @@
 # Containerize the go application
-# This is the Dockerfile that we will use to build the image
-
+# This is the MultiDockerfile that we will use to build the image
 
 # Start with a base image
 FROM golang:1.21 as base
