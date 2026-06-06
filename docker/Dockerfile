@@ -2,20 +2,20 @@
 # This is the MultiDockerfile that we will use to build the image
 
 # Start with a base image
-FROM golang:1.21 as base
+FROM golang:1.22 as base
 
 # Set the working directory inside the container
 WORKDIR /app
 
 
 # Copy the go.mod and go.sum files to the working directory
-COPY go.mod ./
+COPY app/go.mod ./
 
 # Download all the dependencies
 RUN go mod download
 
 # Copy the source code to the working directory
-COPY . .
+COPY app/ .
 
 # Build the application
 RUN go build -o main .
