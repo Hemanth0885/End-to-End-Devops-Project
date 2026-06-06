@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: Go-web-app
+  name: go-web-app
 spec:
   selector:
-    app.kubernetes.io/name: Go-web-app
+    app.kubernetes.io/name: go-web-app
   ports:
     - protocol: TCP
       port: 80

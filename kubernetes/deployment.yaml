@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Go-web-app
+  name: go-web-app
   labels:
-    app: Go-web-app
+    app: go-web-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Go-web-app
+      app: go-web-app
   template:
     metadata:
       labels:
-        app: Go-web-app
+        app: go-web-app
     spec:
       containers:
-      - name: Go-web-app
+      - name: go-web-app
         image: he40133895/go-webapp:v1
         ports:
         - containerPort: 8080

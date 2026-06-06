@@ -1,9 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+
 metadata:
   name: go-web-app
+
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
+
   rules:
   - host: go-web-app.local
     http:
