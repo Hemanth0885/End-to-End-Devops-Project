@@ -10,11 +10,9 @@ The objective is to automate the software delivery lifecycle using modern DevOps
 
 Tools & Technologies:
 
-- AWS
-- Terraform
 - Docker
 - GitHub Actions
-- Kubernetes
+- Kubernetes(K3)
 - Prometheus
 - Grafana
 
@@ -33,7 +31,7 @@ Docker Image Build
         ↓
 DockerHub / Container Registry
         ↓
-Kubernetes Cluster
+Kubernetes Cluster(K3)
         ↓
 Prometheus Monitoring
         ↓
