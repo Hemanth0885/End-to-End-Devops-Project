@@ -66,13 +66,15 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Build and Push action
+    - name: Build and Push Docker Image
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{github.run_id}}
+       context: .
+       file: ./docker/Dockerfile
+       push: true
+       tags: |
+         ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{ github.run_id }}
+         ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:latest
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
