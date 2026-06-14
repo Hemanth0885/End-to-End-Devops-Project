@@ -2,7 +2,7 @@
 
 Project Overview
 
-This project demonstrates an end-to-end DevOps implementation covering application containerization, CI/CD automation, Kubernetes deployment, infrastructure provisioning, and monitoring.
+This project demonstrates an end-to-end DevOps implementation covering application containerization, CI/CD automation, Kubernetes deployment, infrastructure configuration, and monitoring.
 
 The objective is to automate the software delivery lifecycle using modern DevOps tools and practices.
 
@@ -10,9 +10,13 @@ The objective is to automate the software delivery lifecycle using modern DevOps
 
 Tools & Technologies:
 
+- Powershell
+- WSL
 - Docker
 - GitHub Actions
 - Kubernetes(K3)
+- Helm charts
+- ArgoCD
 - Prometheus
 - Grafana
 
@@ -29,13 +33,18 @@ GitHub Actions CI/CD
         ↓
 Docker Image Build
         ↓
-DockerHub / Container Registry
+DockerHub 
         ↓
 Kubernetes Cluster(K3)
+        ↓
+Helm Charts
+        ↓
+    ArgoCD
         ↓
 Prometheus Monitoring
         ↓
 Grafana Dashboards
+
 ```
 
 
@@ -43,9 +52,8 @@ Grafana Dashboards
 
 ## Project Components
 
-Infrastructure as Code
-- Provision AWS infrastructure using Terraform
-- Manage resources using reusable modules
+Configuration
+- Installed and configured Linux, K3 Cluster, Prometheus, Grafana, Kube-metrics in WSL- Powershell.
 
 Containerization
 - Build Docker images for application deployment
