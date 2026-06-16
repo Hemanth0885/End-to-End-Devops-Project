@@ -1,18 +1,37 @@
-ports:
-  - name: http
-    containerPort: 8080
-    protocol: TCP
-
-livenessProbe:
-  httpGet:
-    path: /home
-    port: 8080
-  initialDelaySeconds: 10
-  periodSeconds: 10
-
-readinessProbe:
-  httpGet:
-    path: /home
-    port: 8080
-  initialDelaySeconds: 5
-  periodSeconds: 5
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "go-web-app.fullname" . }}
+  labels:
+    {{- include "go-web-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "go-web-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "go-web-app.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "go-web-app.fullname" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /home
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /home
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
