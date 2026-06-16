@@ -8,7 +8,7 @@ on:
       - "helm/**"
       - "kubernetes/**"
       - "README.md"
-      - "docs/screenshots/**"
+      - "docs/**"
 
 jobs:
   build:
