@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: he40133895/go-web-app
   pullPolicy: IfNotPresent
-  tag: "27592261319"
+  tag: "27610756209"
 
 imagePullSecrets: []
 
