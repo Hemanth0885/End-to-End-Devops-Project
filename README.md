@@ -44,22 +44,25 @@ Project Components
 Infrastructure Setup
 Provisioned a local Kubernetes (K3s) cluster on WSL2, configured kube-state-metrics, and installed the Prometheus and Grafana monitoring stack.
 Containerization
-
 Wrote a multi-stage Dockerfile to build a lightweight, production-ready image for the Go web application.
+
 CI/CD Pipeline (GitHub Actions)
 Built a four-stage pipeline: build & unit test → lint (golangci-lint) → Docker build & push to DockerHub (tagged with the GitHub run ID) → automated commit that updates the image tag in the Helm chart's values.yaml, triggering the GitOps flow.
-
+docs/screenshots/Pipeline-success.png
+docs/screenshots/Go-web-app.png
 Kubernetes & Helm
 Created a parameterized Helm chart covering Deployment, Service, ServiceAccount, Ingress, and HPA templates, with environment-specific values managed through values.yaml.
-
+docs/screenshots/K3-cluster.png
 GitOps with ArgoCD
 Configured an ArgoCD Application resource pointing at the Helm chart path in the Git repo, with automated sync, self-heal, and pruning enabled so cluster state always matches Git.
+docs/screenshots/ArgoCD.png
 Monitoring
-
 Deployed Prometheus to scrape cluster and application metrics, and Grafana dashboards to visualize pod health, resource usage, and deployment status in real time.
 Challenges & Troubleshooting
+docs/screenshots/Grafana-dashboard.png
 
 ->Real issues encountered and resolved during this project:
+
 Immutable selector conflict in ArgoCD sync — ArgoCD repeatedly failed to sync because the existing Deployment's spec.selector differed from the one rendered by Helm, and Kubernetes treats that field as immutable post-creation. Resolved by deleting the stale Deployment object and letting ArgoCD recreate it cleanly from the Helm chart.
 
 CrashLoopBackOff from port mismatch — The application's container port, liveness probe, and readiness probe were misconfigured against the wrong port, causing connection-refused errors and continuous restarts. Fixed by aligning containerPort, livenessProbe, and readinessProbe with the actual port the Go application listens on (8080).
