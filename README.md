@@ -48,21 +48,21 @@ Wrote a multi-stage Dockerfile to build a lightweight, production-ready image fo
 
 CI/CD Pipeline (GitHub Actions)
 Built a four-stage pipeline: build & unit test → lint (golangci-lint) → Docker build & push to DockerHub (tagged with the GitHub run ID) → automated commit that updates the image tag in the Helm chart's values.yaml, triggering the GitOps flow.
-![Multi-stage Dockerfile build artifact](docs/screenshots/Go-web-app.png)
-![GitHub Actions CI/CD pipeline success](docs/screenshots/Pipeline-success.png)
+![Multi-stage Dockerfile build artifact](docs/Go-web-app.png)
+![GitHub Actions CI/CD pipeline success](docs/Pipeline-success.png)
 
 Kubernetes & Helm
 Created a parameterized Helm chart covering Deployment, Service, ServiceAccount, Ingress, and HPA templates, with environment-specific values managed through values.yaml.
-![K3s Kubernetes cluster running](docs/screenshots/K3-cluster.png)
+![K3s Kubernetes cluster running](docs/K3-cluster.png)
 
 GitOps with ArgoCD
 Configured an ArgoCD Application resource pointing at the Helm chart path in the Git repo, with automated sync, self-heal, and pruning enabled so cluster state always matches Git.
-![ArgoCD application synced and healthy](docs/screenshots/ArgoCD.png)
+![ArgoCD application synced and healthy](docs/ArgoCD.png)
 
 Monitoring
 Deployed Prometheus to scrape cluster and application metrics, and Grafana dashboards to visualize pod health, resource usage, and deployment status in real time.
 Challenges & Troubleshooting
-![Grafana dashboard showing pod metrics](docs/screenshots/Grafana-dashboard.png)
+![Grafana dashboard showing pod metrics](docs/Grafana-dashboard.png)
 
 
 ->Real issues encountered and resolved during this project:
